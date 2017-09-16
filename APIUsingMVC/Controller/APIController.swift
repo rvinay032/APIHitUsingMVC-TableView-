@@ -11,10 +11,10 @@ import Foundation
 
 
 
-func logInWith(userName:String,password:String) -> Person {
+func logInWith(userName:String,password:String, dob: String, contactNo: String) -> Person {
     
     let signInUrl = "https://httpbin.org/post"
-    let ob: Person = getSignIn(username: userName, password: password, url: signInUrl)
+    let ob: Person = getSignIn(username: userName, password: password, dob: dob, contactNo: contactNo, url: signInUrl)
     return ob
 }
 
