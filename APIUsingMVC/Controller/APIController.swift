@@ -9,12 +9,19 @@
 import Foundation
 
 
-
-
-func logInWith(userName:String,password:String, dob: String, contactNo: String) -> Person {
+class APIController {
     
-    let signInUrl = "https://httpbin.org/post"
-    let ob: Person = getSignIn(username: userName, password: password, dob: dob, contactNo: contactNo, url: signInUrl)
-    return ob
+    
+    func logInWith(dictData: [String:String], success:@escaping (Person) ->(Void)) {
+        
+        let signInUrl = "https://httpbin.org/post"
+        NetworkController().getSignIn(dictData: dictData, url: signInUrl ) { json in
+            
+            let personOb = Person(jsonData: json)
+            success(personOb)
+            
+        }
+        
+    }
+    
 }
-

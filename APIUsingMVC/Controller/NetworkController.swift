@@ -8,42 +8,46 @@
 
 import Foundation
 
-
-func getSignIn(username: String, password: String, dob: String, contactNo: String, url: String) -> Person{
-    let ob = Person(username: username, password: password, dob: dob, contactNo: contactNo)
-    let postData = NSMutableData(data: "UserName=\(username)".data(using: String.Encoding.utf8)!)
-    postData.append("&Password=\(password)".data(using: String.Encoding.utf8)!)
-    postData.append("&DateOfBirth=\(dob)".data(using: String.Encoding.utf8)!)
-    postData.append("&ContactNo=\(contactNo)".data(using: String.Encoding.utf8)!)
+class NetworkController {
     
-    let request = NSMutableURLRequest(url: NSURL(string: url)! as URL,
-                                      cachePolicy: .useProtocolCachePolicy,
-                                      timeoutInterval: 10.0)
-    
-    request.httpMethod = "POST"
-
-    request.httpBody = postData as Data
-    
-   URLSession.shared.dataTask(with: request as URLRequest, completionHandler: { (data, response, error) -> Void in
-        if let err = error {
-            print(err)
-        }
-        else {
+    func getSignIn(dictData: [String: String],
+                   url: String,
+                   success: @escaping ((JSON) -> (Void))) {
+        
+        let postData = NSMutableData(data: "UserName=\(dictData["userName"] ?? ""))".data(using: String.Encoding.utf8)!)
+        
+        postData.append("&Password=\(String(describing: dictData["password"]))".data(using: String.Encoding.utf8)!)
+        
+        postData.append("&DateOfBirth=\(String(describing: dictData["dob"]))".data(using: String.Encoding.utf8)!)
+        
+        postData.append("&ContactNo=\(String(describing: dictData["contactNo"]))".data(using: String.Encoding.utf8)!)
+        
+        let request = NSMutableURLRequest(url: NSURL(string: url)! as URL,
+                                          cachePolicy: .useProtocolCachePolicy,
+                                          timeoutInterval: 10.0)
+        
+        request.httpMethod = "POST"
+        
+        request.httpBody = postData as Data
+        
+        URLSession.shared.dataTask(with: request as URLRequest, completionHandler: { (data, response, error) -> Void in
+            if let err = error {
+                print(err)
+            }
             
-            let json = JSON(data!)
-      
-           
-            Person.init(username: json["form"]["UserName"].string!, password: json["form"]["Password"].string!, dob: json["form"]["DateOfBirth"].string!, contactNo: json["form"]["ContactNo"].string!)
-          
-           
+            if let data = data {
+                
+                DispatchQueue.main.async {
+                    success(JSON(data))
+                    
+                }
+            }
             
-        }
-//    let httpResponse = response as! HTTPURLResponse
-//    print("My HTTP Response is = = = \(httpResponse)")
-   
-    
-}).resume()
-   return ob
+            
+        }).resume()
+        
+        
+    }
 }
 
 

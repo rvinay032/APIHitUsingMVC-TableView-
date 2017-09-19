@@ -10,6 +10,7 @@ import UIKit
 
 class SecondViewCotroller: UIViewController {
     
+    
     var usernameSecond: String!
     var passwordSecond: String!
     var dobSecond: String!
@@ -59,11 +60,20 @@ class SecondViewCotroller: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        
+      
         userNameLabel.text = usernameSecond
-        passwordLabel.text = passwordSecond
+        
+        passwordLabel.text = passwordSecond!
+        
         dobLabel.text = dobSecond
+        
         contactNoLabel.text = contactNoSecond
+        
+        subView.clipsToBounds = true
+        
+        clearBtnOutlet.layer.cornerRadius = clearBtnOutlet.frame.height/2
+        clearBtnOutlet.clipsToBounds = true
         
     }
     
@@ -71,14 +81,10 @@ class SecondViewCotroller: UIViewController {
         UIView.animate(withDuration: 0.5, delay: 1, options: .autoreverse, animations: {
 
             self.subView.transform = CGAffineTransform(scaleX:0.5, y: 0.5)
-            
-
+        
         }, completion: { (finish )-> Void in
             self.subView.transform = CGAffineTransform.identity
 
-        }  )
+        })
     }
-
- 
-
 }

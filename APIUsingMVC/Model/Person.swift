@@ -10,21 +10,20 @@ import Foundation
 
 class Person {
     
-    var username: String
-    var password: String
-    var dob: String
-    var contactNo: String
-    
-    init(username: String, password: String, dob: String, contactNo: String) {
-        self.username = username
-        self.password = password
-        self.dob = dob
-        self.contactNo = contactNo
-        print("username in Person Class is \(username)")
-        print("password in Person Class is \(password)")
-        print("dob in Person Class is \(dob)")
-        print("contactNo in Person Class is \(contactNo)")
+    var usernamePerson: String
+    var passwordPerson: String
+    var dobPerson: String
+    var contactNoPerson: String
+
+    init(jsonData:JSON) {
+        
+        self.usernamePerson = jsonData["form"]["UserName"].stringValue
+        self.passwordPerson = jsonData["form"]["Password"].stringValue
+        self.dobPerson = jsonData["form"]["DateOfBirth"].stringValue
+        self.contactNoPerson = jsonData["form"]["ContactNo"].stringValue
+        print(" username in Person is \(self.usernamePerson)")
     }
     
-    
-}
+    }
+
+
