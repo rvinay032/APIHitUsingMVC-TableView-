@@ -16,11 +16,11 @@ class NetworkController {
         
         let postData = NSMutableData(data: "UserName=\(dictData["userName"] ?? ""))".data(using: String.Encoding.utf8)!)
         
-        postData.append("&Password=\(String(describing: dictData["password"]))".data(using: String.Encoding.utf8)!)
+        postData.append("&Password=\(dictData["password"] ?? ""))".data(using: String.Encoding.utf8)!)
         
-        postData.append("&DateOfBirth=\(String(describing: dictData["dob"]))".data(using: String.Encoding.utf8)!)
+        postData.append("&DateOfBirth=\(dictData["dob"] ?? ""))".data(using: String.Encoding.utf8)!)
         
-        postData.append("&ContactNo=\(String(describing: dictData["contactNo"]))".data(using: String.Encoding.utf8)!)
+        postData.append("&ContactNo=\(dictData["contactNo"] ?? ""))".data(using: String.Encoding.utf8)!)
         
         let request = NSMutableURLRequest(url: NSURL(string: url)! as URL,
                                           cachePolicy: .useProtocolCachePolicy,

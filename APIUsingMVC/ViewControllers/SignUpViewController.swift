@@ -78,6 +78,21 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         guard let tableCell = cell as? SignUpTableViewCell else {fatalError()}
         return tableCell
     }
+    
+    // Store data in dictionary from textFields.................!!!!!
+    
+    
+    @objc func textFieldDidChange(textField: UITextField) {
+       
+        guard let cell = getCell(textField) as? SignUpTableViewCell else {fatalError()}
+        
+        guard let customindex = self.signUptableView.indexPath(for: cell) else {fatalError()}
+        
+        dict[arr[customindex.row]] = cell.dataTextField.text!
+        
+        print("dict data is \(dict)")
+        
+    }
 }
 
 ////// Extension of SignUpView Class-----------------
@@ -90,9 +105,16 @@ extension SignUpViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "SignUpTableViewCellId", for: indexPath) as? SignUpTableViewCell else {fatalError("unable to make cell")}
-        //        cell.dataTextField.addTarget(<#T##target: Any?##Any?#>, action: <#T##Selector#>, for: .editingChanged)
+       
+        cell.dataTextField.addTarget(self, action: #selector(textFieldDidChange(textField:)), for: .editingChanged)
+        
         cell.dataTextField.delegate = self
+        
         cell.dataTextField.placeholder = self.arr[indexPath.row]
+        
+        if cell.dataTextField.placeholder == "password" {
+            cell.dataTextField.isSecureTextEntry = true
+            }
         return cell
         
     }
@@ -101,20 +123,8 @@ extension SignUpViewController: UITableViewDataSource, UITableViewDelegate {
         return 120
     }
     
-    // Store data in dictionary from textFields.................!!!!!
     
-    func textFieldDidEndEditing(_ textField: UITextField, reason: UITextFieldDidEndEditingReason) {
-        
-        guard let cell = getCell(textField) as? SignUpTableViewCell else {fatalError()}
-        
-        guard let customindex = self.signUptableView.indexPath(for: cell) else {fatalError()}
-        
-        dict[arr[customindex.row]] = cell.dataTextField.text!
-        
-        print("dict data is \(dict)")
-    
-    }
-    
+
     
     
 }
