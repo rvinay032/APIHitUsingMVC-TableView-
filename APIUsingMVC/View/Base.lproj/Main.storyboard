@@ -49,6 +49,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="C4S-xB-uo7"/>
                     <connections>
+                        <outlet property="btnOutlet" destination="ZbP-a8-pEd" id="yX1-gK-RvA"/>
                         <outlet property="signUptableView" destination="qlN-B1-PBu" id="DwP-bJ-yuV"/>
                     </connections>
                 </viewController>
@@ -173,6 +174,39 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2s0-44-mVk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="78" y="-157"/>
+        </scene>
+        <!--Data ShowVC-->
+        <scene sceneID="lKm-Rb-cly">
+            <objects>
+                <viewController storyboardIdentifier="DataShowVCId" id="4ur-sM-bOZ" customClass="DataShowVC" customModule="APIUsingMVC" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="aJ8-6v-AW8"/>
+                        <viewControllerLayoutGuide type="bottom" id="DEf-H6-iGW"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ogI-H8-l2U">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ZPb-BB-8GM">
+                                <rect key="frame" x="0.0" y="108" width="375" height="450"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.057496117620000002" green="0.54184160849999996" blue="0.89580028550000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="ZPb-BB-8GM" firstAttribute="leading" secondItem="ogI-H8-l2U" secondAttribute="leading" id="3NS-Eq-vl6"/>
+                            <constraint firstAttribute="trailing" secondItem="ZPb-BB-8GM" secondAttribute="trailing" id="AMp-pH-r1v"/>
+                            <constraint firstItem="ZPb-BB-8GM" firstAttribute="top" secondItem="aJ8-6v-AW8" secondAttribute="bottom" constant="88" id="WsW-ol-B14"/>
+                            <constraint firstItem="DEf-H6-iGW" firstAttribute="top" secondItem="ZPb-BB-8GM" secondAttribute="bottom" constant="109" id="gXT-dD-jIg"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="dataShowTableView" destination="ZPb-BB-8GM" id="LPp-ax-5Cw"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EOj-el-bmh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="768.79999999999995" y="-155.17241379310346"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="DpB-V8-mF2">

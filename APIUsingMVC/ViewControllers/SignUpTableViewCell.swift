@@ -8,7 +8,7 @@
 
 import UIKit
 class SignUpTableViewCell: UITableViewCell {
-
+    
     
     @IBOutlet weak var dataTextField: UITextField!
     
@@ -19,12 +19,12 @@ class SignUpTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-       
+        
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
     }
     
 }

@@ -39,7 +39,7 @@ class SecondViewCotroller: UIViewController {
             contactNoLabel.text = ""
             isEmpty = true
         }
-        
+            
         else {
             
             UIView.animate(withDuration: 0.2, delay: 0, usingSpringWithDamping: 0, initialSpringVelocity: 5, options: .allowUserInteraction, animations: {
@@ -61,7 +61,7 @@ class SecondViewCotroller: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-      
+        
         userNameLabel.text = usernameSecond
         
         passwordLabel.text = passwordSecond!
@@ -79,12 +79,12 @@ class SecondViewCotroller: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         UIView.animate(withDuration: 0.5, delay: 1, options: .autoreverse, animations: {
-
+            
             self.subView.transform = CGAffineTransform(scaleX:0.5, y: 0.5)
-        
+            
         }, completion: { (finish )-> Void in
             self.subView.transform = CGAffineTransform.identity
-
+            
         })
     }
 }
